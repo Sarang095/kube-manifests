@@ -7,11 +7,13 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/Sarang095/kube-manifests.git'
-    targetRevision: main
+    targetRevision: master
     path: ./kube-manifests
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: your-namespace
   syncPolicy:
     automated:
       prune: true              # Automatically delete resources not in Git
@@ -25,28 +27,7 @@ spec:
       jsonPointers:
         - /spec/replicas       # Ignore replica changes
 
-  # GitOps practices for scalability and resilience
-  revisionHistoryLimit: 5       # Limit rollback history to save resources
-  info:
-    - name: owner
-      value: 'DevOps Team'
-    - name: environment
-      value: 'production'
-
-  # Compliance & Security Policies
-  metadata:
-    labels:
-      environment: production
-    annotations:
-      argocd.argoproj.io/compare-options: IgnoreExtraneous
-  retryStrategy:
-    limit: 5                     # Retry on errors
-    backoff:
-      duration: '5s'
-      factor: 2
-      maxDuration: '3m'
-
-# Additional scalability practices
+  revisionHistoryLimit: 5  
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
