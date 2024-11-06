@@ -8,6 +8,6 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
-  clusterIP: NodePort
+  type: NodePort
   selector:
     app: java-crud-app
