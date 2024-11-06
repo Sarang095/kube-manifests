@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/Sarang095/kube-manifests.git'
     targetRevision: master
-    path: ./kube-manifests
+    path: ./helm-kube
     helm:
       valueFiles:
         - values.yaml
