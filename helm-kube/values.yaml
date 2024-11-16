@@ -2,5 +2,5 @@ replicas: 2
 
 image:
   repository: csag095/java-crud-main
-  tag: 12
+  tag: 13
 
